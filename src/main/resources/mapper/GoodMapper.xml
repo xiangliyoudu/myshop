@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xlyd.com.myshop.GoodDao">
+
+    <sql id="mySql">
+        `type`, picture, pname, spec, totalNumber, price, totalPrice, fee, sellPrice, salePrice, activities, stock, remarks, storehouse
+    </sql>
+
+    <select id="listAll" resultType="com.xlyd.com.myshop.Good">
+        select * from good order by `id`
+    </select>
+
+    <insert id="addOne" parameterType="com.xlyd.com.myshop.Good">
+        insert into good (<include refid="mySql"/>) values (
+        #{good.type} , #{good.picture} , #{good.pname} , #{good.spec},
+        #{good.totalNumber} , #{good.price} , #{good.totalPrice} ,
+        #{good.fee} , #{good.sellPrice} , #{good.salePrice} ,
+        #{good.activities} , #{good.stock}, #{good.remarks}, #{good.storehouse}
+        )
+    </insert>
+
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        delete from good where id = #{id}
+    </delete>
+
+</mapper>
